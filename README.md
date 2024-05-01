@@ -1,7 +1,8 @@
 
 
-Adaptive Microprocessor with Miniature Accelerator using LLVM Infrastructure and FPGA: The Case of ARM Cortex-M0
+Innovative Hardware Accelerator Architecture for FPGA-Based General-Purpose RISC Microprocessors
 
-Ehsan Ali (ehssan.aali@gmail.com),  Wanchalerm Pora(wanchalerm.p@chula.ac.th)
+Author: Dr. Ehsan Ali 
+Email: ehssan.aali@gmail.com
 
-Last update: 28th July, 2021
+Last update: 1st May, 2024
