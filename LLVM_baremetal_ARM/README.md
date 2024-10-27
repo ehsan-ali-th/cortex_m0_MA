@@ -11,19 +11,31 @@
 
 1. Download the LLVM project source code (version = 18.1.8):
 ```console
-$ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-project-18.1.8.src.tar.xz  
-$ tar xvf llvm-project-18.1.8.src.tar.xz  
- ````
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-project-18.1.8.src.tar.xz  
+```
+
+```console
+tar xvf llvm-project-18.1.8.src.tar.xz  
+```
 
 2. Apply patches:
 
 Copy ./src/patches/CMakePolicy.cmake.patch into lvm-project-18.1.8.src/patches folder, then:
 
 ```console
-$ cd llvm-project-18.1.8.src/  
-$ mkdir patches 
-$ cp ../src/patches/CMakePolicy.cmake.patch ./patches
-$ patch -p1 < ./patches/CMakePolicy.cmake.patch  
+cd llvm-project-18.1.8.src/  
+```
+
+```console
+mkdir patches 
+```
+
+```console
+cp ../src/patches/CMakePolicy.cmake.patch ./patches
+```
+
+```console
+patch -p1 < ./patches/CMakePolicy.cmake.patch  
 ```
 
 ## LLVM Stage-1 Build: Use host native compiler (e.g., GCC) to build LLVM Clang/Clang++ and LLD
@@ -33,8 +45,11 @@ $ patch -p1 < ./patches/CMakePolicy.cmake.patch
  
 1. Create a build folder:  
 ```console
-$ cd llvm-project-18.1.8.src/  
-$ mkdir build_stage1 && cd build_stage1/  
+cd llvm-project-18.1.8.src/  
+```
+
+```console
+mkdir build_stage1 && cd build_stage1/  
 ```
 
 2. Create [./src/stage1/stage1.sh](./src/stage1/stage1.sh) script:
@@ -60,19 +75,28 @@ cmake -G Ninja ../llvm \
 
 3. Run the CMAKE configure script:
 ```console
-$ chmod +x stage1.sh  
-$ ./stage1.sh  
+chmod +x stage1.sh  
+```
+
+```console
+./stage1.sh  
 ```
     
 4. Build and install:
 ```console
-$ ninja  
-$ ninja install
+ninja  
+```
+
+```console
+ninja install
 ```
 
 5. Verify that the stage-1 Clang is installed:
 ```console
-$ /usr/local/bin/clang –version
+/usr/local/bin/clang –version
+```
+
+```text
 clang version 18.1.8
 Target: x86_64-unknown-linux-gnu
 Thread model: posix
@@ -80,12 +104,18 @@ InstalledDir: /usr/local/bin
 ```
 
 ```console
-$/usr/local/bin/clang -print-target-triple
+/usr/local/bin/clang -print-target-triple
+```
+
+```console
 x86_64-unknown-linux-gnu
 ```
 
 ```console
-$ /usr/local/bin/clang -print-targets
+/usr/local/bin/clang -print-targets
+```
+
+```text
  Registered Targets:
     x86    - 32-bit X86: Pentium-Pro and above
     x86-64 - 64-bit X86: EM64T and AMD64
@@ -100,8 +130,11 @@ Although using the above two arguments are possble, But we are going to perform 
 We can now compile a C++ program on our local host X86_64 machine using the freshly installed stage-1 LLVM Clang++ compiler (installed at local folder /home/esi/llvm/bin):
 
 ```console
-$ sudo ldconfig /home/esi/llvm/lib/x86_64-unknown-linux-gnu/
-$ /home/esi/llvm/bin/clang++ main.cpp -o main2 -I/home/esi/llvm/include/c++/v1/ -I/home/esi/llvm/include/x86_64-unknown-linux-gnu/c++/v1/ --target=x86_64-unknown-linux-gnu -fuse-ld=lld -stdlib=libc++ -L/home/esi/llvm/lib/x86_64-unknown-linux-gnu/
+sudo ldconfig /home/esi/llvm/lib/x86_64-unknown-linux-gnu/
+```
+
+```console
+/home/esi/llvm/bin/clang++ main.cpp -o main2 -I/home/esi/llvm/include/c++/v1/ -I/home/esi/llvm/include/x86_64-unknown-linux-gnu/c++/v1/ --target=x86_64-unknown-linux-gnu -fuse-ld=lld -stdlib=libc++ -L/home/esi/llvm/lib/x86_64-unknown-linux-gnu/
 ```
 ## LLVM Stage-2 Build: Use the stage-1 Clang/Clang++ compilers to build LLVM Clang/Clang++ and LLD
 
@@ -109,8 +142,11 @@ Now we are going to re-compile the LLVM project, this time with the already buil
 
 1. Create a build folder:  
 ```console
-$ cd llvm-project-18.1.8.src/  
-$ mkdir build_stage2 && cd build_stage2/  
+cd llvm-project-18.1.8.src/  
+```
+
+```console
+mkdir build_stage2 && cd build_stage2/  
 ```
 
 2. Create [./src/stage2/stage2.sh](./src/stage2/stage2.sh) script:
@@ -143,14 +179,21 @@ LD_FOR_TARGET=$LLVMinstallprefix/bin/ld.lld  cmake -G Ninja ../llvm \
 
 3. Run the CMAKE configure script:
 ```console
-$ chmod +x stage2.sh  
-$ ./stage2.sh  
+chmod +x stage2.sh  
+```
+
+```console
+./stage2.sh  
 ```
     
 4. Build and install:
+
 ```console
-$ ninja  
-$ ninja install
+ninja  
+```
+
+```console
+ninja install
 ```
 
 Now we have a fully functional LLVM Clang/Clang++ compilers and LLD linker with compiler builtins (Compiler-rt) and C++ standard libraries (libcxx).
@@ -159,8 +202,11 @@ Now we have a fully functional LLVM Clang/Clang++ compilers and LLD linker with 
 
 1. Create a build folder:
 ```console
-$ cd llvm-project-18.1.8.src
-$ mkdir build_ARM && cd build_ARM
+cd llvm-project-18.1.8.src
+```
+
+```console
+mkdir build_ARM && cd build_ARM
 ```
 
 2. Create [./src/stage_ARM/stage_ARM.sh](./src/stage_ARM/stage_ARM.sh) script:
@@ -194,18 +240,28 @@ LD_FOR_TARGET=$LLVMinstallprefix/bin/ld.lld  cmake -G Ninja ../llvm \
 ```
 3. Run the CMAKE configure script:
 ```console
-$ chmod +x stage_ARM.sh  
-$ ./stage_ARM.sh  
+chmod +x stage_ARM.sh  
+```
+
+```console
+./stage_ARM.sh  
 ```
     
 4. Build and install:
 ```console
-$ ninja  
-$ ninja install
+ninja  
+```        
+
+```console
+ninja install
 ```
+
 5. Verify that the ARM Clang is installed:
 ```console
-$ ~/arm-none-eabi/bin/clang++ -print-targets
+/home/esi/arm-none-eabi/bin/clang++ -print-targets
+```
+
+```text
   Registered Targets:
     arm     - ARM
     armeb   - ARM (big endian)
@@ -248,8 +304,11 @@ Combining all the above and put them together yields the correct target triple: 
 
 1. Create a build folder:  
 ```console
-$ cd llvm-project-18.1.8.src/  
-$ mkdir build_compiler_rt && cd build_compiler_rt  
+cd llvm-project-18.1.8.src/  
+```
+
+```console
+mkdir build_compiler_rt && cd build_compiler_rt  
 ```
 
 2. Create [./src/stage_ARM_crt/stage_AMR_compiler-rt.sh](./src/stage_ARM_crt/stage_AMR_compiler-rt.sh) script:
