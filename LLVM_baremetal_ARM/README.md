@@ -272,7 +272,8 @@ ninja install
 
 
 To cross-compile compiler-rt for ARM architectur eon an x86_64 host machine we need the following items:
-- An x84_64 build of LLVM/clang for the llvm-tools and llvm-config. We built this in our stage-2 built [See](#llvm-stage-2-build:-use-the-stage-1-clangclang-compilers-to-build-llvm-clangclang-and-lld).
+- An x84_64 build of LLVM/clang for the llvm-tools and llvm-config. We built this in our stage-2 built [See Stage-2](#llvm-stage-2-build-use-the-stage-1-clangclang-compilers-to-build-llvm-clangclang-and-lld).
+
 - A clang executable with support for the ARM target. We built this 
 - compiler-rt sources
 - The qemu-arm user mode emulator
