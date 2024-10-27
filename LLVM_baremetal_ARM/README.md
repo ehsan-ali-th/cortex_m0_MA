@@ -20,7 +20,7 @@ tar xvf llvm-project-18.1.8.src.tar.xz
 
 2. Apply patches:
 
-Copy ./src/patches/CMakePolicy.cmake.patch into lvm-project-18.1.8.src/patches folder, then:
+Copy [./src/patches/CMakePolicy.cmake.patch](./src/patches/CMakePolicy.cmake.patch) into lvm-project-18.1.8.src/patches folder, then:
 
 ```console
 cd llvm-project-18.1.8.src/  
@@ -272,7 +272,7 @@ ninja install
 
 
 To cross-compile compiler-rt for ARM architectur eon an x86_64 host machine we need the following items:
-- An x84_64 build of LLVM/clang for the llvm-tools and llvm-config. We built this in our stage-2 built [See](#LLVM-Stage-2-Build:-Use-the-stage-1-Clang/Clang++-compilers-to-build-LLVM-Clang/Clang++-and-LLD).
+- An x84_64 build of LLVM/clang for the llvm-tools and llvm-config. We built this in our stage-2 built [See](#llvm-stage-2-build:-use-the-stage-1-clangclang-compilers-to-build-llvm-clangclang-and-lld).
 - A clang executable with support for the ARM target. We built this 
 - compiler-rt sources
 - The qemu-arm user mode emulator
