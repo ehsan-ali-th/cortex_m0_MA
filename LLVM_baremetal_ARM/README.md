@@ -653,10 +653,9 @@ int main() {
 
 Output:
 
-```{: .text .no-copy}
-ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
-clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
-```
+    ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
+    clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
+
 
 It seems that we still cannot compile our C program due to the clang compiler is unable to find the compiler-rt library (libclang_rt.builtins-armv6m.a). The library is already installed but the compiler cannot find it. We solve this by creating a symbolic link to the library:
 
