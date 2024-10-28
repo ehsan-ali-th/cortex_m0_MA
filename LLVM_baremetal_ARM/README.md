@@ -489,7 +489,7 @@ CC=/home/durian/llvm/bin/clang CFLAGS_FOR_TARGET="--target=armv6m-unknown-eabi -
 ```console
 make && make install
 ```
-Now the new lib is installed inside /home/durian/arm-unknown-eabi/armv6m-unknown-eabi/:
+Now the newlib is installed inside /home/durian/arm-unknown-eabi/armv6m-unknown-eabi/:
 
 ```console
 ls /home/durian/arm-unknown-eabi/armv6m-unknown-eabi/
@@ -653,7 +653,7 @@ int main() {
 
 Output:
 
-```text
+```
 ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
 clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
 ```
