@@ -653,7 +653,7 @@ int main() {
 
 Output:
 
-```{.text .no-copy}
+```{: .text .no-copy}
 ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
 clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
 ```
