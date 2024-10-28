@@ -125,7 +125,7 @@ Output:
 
 **Note:** According to: https://llvm.org/docs/AdvancedBuilds.html the Clang CMake build system supports bootstrap (aka multi-stage) builds. `-DCLANG_ENABLE_BOOTSTRAP=On` does this bootstrap mode with multiple stages. The `-DCLANG_BOOTSTRAP_PASSTHROUGH` allows passing arguments between stages.
 
-Although using the above two arguments are possble, But we are going to perform the multi-stage build manually for the learning purposes. This allows the reader to see the detailes of every step and reduces confusion.
+Although using the above two arguments are possible, But we are going to perform the multi-stage build manually for the learning purposes. This allows the reader to see the details of every step and reduces confusion.
 
 6. Compile a test C++ program:
 
@@ -299,11 +299,11 @@ Output:
 ## Compile LLVM Compiler-RT Project for Baremetal ARM Cortex-M0 (Triple: armv6m-unknown-eabi)
 
 
-To cross-compile compiler-rt for ARM architectur eon an x86_64 host machine we need the following items:
+To cross-compile compiler-rt for ARM architecture eon an x86_64 host machine we need the following items:
 - An x84_64 build of LLVM/clang for the llvm-tools and llvm-config: We built this already in our stage-2 built step [See Stage-2](#llvm-stage-2-build-use-the-stage-1-clangclang-compilers-to-build-llvm-clangclang-and-lld).
 - A clang executable with support for the ARM target: We built this already in our ARM built [See LLVM ARM](#built-llvm-clangclang-compilers-for-arm-architecture)
 - Compiler-rt sources: The subfoler *compiler-rt* inside LLVM source code folder. 
-- An ARM sysroot: One can build this sysroot from scratch but it is too complicated. The easier option is to download an already built sysroot from the offical developer section of ARM website: https://developer.arm.com/downloads/-/gnu-a
+- An ARM sysroot: One can build this sysroot from scratch but it is too complicated. The easier option is to download an already built sysroot from the official developer section of ARM website: https://developer.arm.com/downloads/-/gnu-a
 
 
 The LLVM compiler-rt project consists of:
@@ -316,7 +316,7 @@ We need to compile the compiler-rt project for ARM Cortext-M0 Microprocessor. Be
 
 ### LLVM Target Triple
 
-It is a dash seperated string (text) that specifies the architectrue which the generated machine code is compiled for. The word *triple* because it originally had exactly three parts (today it can have between two and five parts). The triple format is shown below:
+It is a dash separated string (text) that specifies the architecture which the generated machine code is compiled for. The word *triple* because it originally had exactly three parts (today it can have between two and five parts). The triple format is shown below:
 
 \<arch>\<sub_arch>-\<vendor>-\<sys>-\<env>
 
@@ -324,7 +324,7 @@ Therefore, if we would like to form the target triple text for ARM Cortex-M0 mic
 - The ARM architecture (`arm`)
 - Cortex-M0 processor is ARMSubArch_v6m so sub-architecture is (`v6m`)
 - From any vendor (`unknown`)
-- Poosible values for sys = none, linux, win32, darwin, cuda, etc. (`unknown`)
+- Possible values for sys = none, linux, win32, darwin, cuda, etc. (`unknown`)
 - Environment type is embedded application binary interface (`eabi`)
 
 Combining all the above and put them together yields the correct target triple: `armv6m-unknown-unknown-eabi`
@@ -336,7 +336,7 @@ Combining all the above and put them together yields the correct target triple: 
     ```console
     wget https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
     ```
-    **Note**: We neet to navigate to "x86_64 Linux hosted cross compilers" section and download the compiler for AArch64 ELF bare-metal target (aarch64-none-linux-gnu). Do not download the (arm-none-linux-gnueabihf compiler as it is compiled with hard floating point unit. The ARM Cortex-M0 has no hard floating point unit and we need to use software to emulate the floating point unit (soft-float).
+    **Note**: We need to navigate to "x86_64 Linux hosted cross compilers" section and download the compiler for AArch64 ELF bare-metal target (aarch64-none-linux-gnu). Do not download the (arm-none-linux-gnueabihf compiler as it is compiled with hard floating point unit. The ARM Cortex-M0 has no hard floating point unit and we need to use software to emulate the floating point unit (soft-float).
 
     2. Unzip:
     ```console
@@ -610,7 +610,7 @@ ld.lld: error: undefined symbol: _write
 ...
 ```
 
-These undefined function are stubs that are used by the newlib and must be defined by the user of the newlib according to the hardware. The user must define how the hardware performs the input and output operation by placing appropriate code (either in C or assembly machine code) in the function such as \_read, \_write, \_exit, etc. Because our goal here is to use the LLVM infrastructure in profiling the program we do not need to implement these functions and a blank implementation will suffuce. 
+These undefined function are stubs that are used by the newlib and must be defined by the user of the newlib according to the hardware. The user must define how the hardware performs the input and output operation by placing appropriate code (either in C or assembly machine code) in the function such as \_read, \_write, \_exit, etc. Because our goal here is to use the LLVM infrastructure in profiling the program we do not need to implement these functions and a blank implementation will suffice. 
 
 3. Edit the sample C file:
 
@@ -663,26 +663,8 @@ It seems that we still cannot compile our C program due to the clang compiler is
 ln -s  /home/durian/arm-unknown-eabi/lib/baremetal/libclang_rt.builtins-arm.a /home/durian/arm-unknown-eabi/armv6m-unknown-eabi/lib/libclang_rt.builtins-armv6m.a
 ```
 
-Now issung the compile command works flawlessly:
+Now issuing the compile command works flawlessly:
 
 ```console
 /home/durian/arm-unknown-eabi/bin/clang main.c -o main -T cortexm0.ld --sysroot=/home/durian/arm-unknown-eabi/armv6m-unknown-eabi --target=armv6m-unknown-unknown-eabi -march=armv6m -mcpu=cortex-m0 -mfpu=none -mfloat-abi=soft
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
