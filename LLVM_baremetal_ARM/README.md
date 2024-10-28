@@ -527,8 +527,8 @@ Now we can compile a C/C++ program for ARM Cortex-M0 !
 
 Based on our hardware (FPGA board) and address location of defined memories we can create a linker file and pass it to the clang using -T argument.
 
-[cortexm0.ld](.src/cortexm0.ld) file:
-
+[cortexm0.ld](./src/cortexm0.ld) file:
+                    cortexm0.ld
 ```text
 ENTRY(main)
 MEMORY {
@@ -652,10 +652,10 @@ int main() {
 ```
 
 Output:
-
-    ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
-    clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
-
+```text
+ld.lld: error: unable to find library -lclang_rt.builtins-armv6m
+clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
+```
 
 It seems that we still cannot compile our C program due to the clang compiler is unable to find the compiler-rt library (libclang_rt.builtins-armv6m.a). The library is already installed but the compiler cannot find it. We solve this by creating a symbolic link to the library:
 
