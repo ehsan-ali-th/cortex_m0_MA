@@ -1,0 +1,28 @@
+--- syscalls.c	2024-08-17 03:32:38.992920244 +0700
++++ syscalls.c.orig	2024-08-17 03:31:07.772959295 +0700
+@@ -180,7 +180,7 @@
+   const char * name;
+ 
+   name = ":tt";
+-  asm ("movs r0,%2; movs r1, #0; swi %a1; movs %0, r0"
++  asm ("mov r0,%2; mov r1, #0; swi %a1; mov %0, r0"
+        : "=r"(fh)
+        : "i" (SWI_Open),"r"(name)
+        : "r0","r1");
+@@ -189,14 +189,14 @@
+   if (_has_ext_stdout_stderr ())
+   {
+     name = ":tt";
+-    asm ("movs r0,%2; movs r1, #4; swi %a1; movs %0, r0"
++    asm ("mov r0,%2; mov r1, #4; swi %a1; mov %0, r0"
+ 	 : "=r"(fh)
+ 	 : "i" (SWI_Open),"r"(name)
+ 	 : "r0","r1");
+     monitor_stdout = fh;
+ 
+     name = ":tt";
+-    asm ("movs r0,%2; movs r1, #8; swi %a1; movs %0, r0"
++    asm ("mov r0,%2; mov r1, #8; swi %a1; mov %0, r0"
+ 	 : "=r"(fh)
+ 	 : "i" (SWI_Open),"r"(name)
+ 	 : "r0","r1");

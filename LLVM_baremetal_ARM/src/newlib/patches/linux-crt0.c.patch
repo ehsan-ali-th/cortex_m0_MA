@@ -1,0 +1,11 @@
+--- linux-crt0.c	2024-08-17 03:34:15.537126372 +0700
++++ linux-crt0.c.orig	2024-08-17 03:33:16.570555824 +0700
+@@ -29,7 +29,7 @@
+ __attribute__((naked, used))
+ static void _start_thumb(void)
+ #else
+-//__attribute__((naked))
++__attribute__((naked))
+ void _start(void)
+ #endif
+ {

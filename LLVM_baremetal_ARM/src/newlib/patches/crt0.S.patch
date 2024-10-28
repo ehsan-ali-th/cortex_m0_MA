@@ -1,0 +1,29 @@
+--- crt0.S	2024-08-17 03:42:04.317686275 +0700
++++ crt0.S.orig	2024-08-17 03:41:10.059298345 +0700
+@@ -140,7 +140,7 @@
+ *                          his own implementation if current doesn't fit.
+ *
+ ******************************************************************************/
+-	.align	2
++	.align	0
+ 	FUNC_START	_stack_init
+ 	.weak FUNCTION (_stack_init)
+ 	FN_EH_START
+@@ -243,7 +243,7 @@
+ /*******************************************************************************
+ * Main library startup code.
+ *******************************************************************************/
+-	.align 	2
++	.align 	0
+ 	FUNC_START	_mainCRTStartup
+ 	FUNC_START	_start
+ 	FN_EH_START
+@@ -564,7 +564,7 @@
+ 
+ 	/* For Thumb, constants must be after the code since only 
+ 	   positive offsets are supported for PC relative addresses.  */
+-	.align 2
++	.align 0
+ .LC0:
+ #ifdef ARM_RDI_MONITOR
+ 	.word	HeapBase
