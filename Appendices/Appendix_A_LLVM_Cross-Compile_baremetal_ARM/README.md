@@ -1,4 +1,4 @@
-# LLVM-based C/C++ Compiler to Target ARM Cortex-M0 Microprocessor
+# Appendix A: LLVM-based C/C++ Cross Compiler to Target ARM Cortex-M0 Microprocessor
 
 **Parent Project**: Innovative Hardware Accelerator Architecture for FPGA-Based General-Purpose RISC Microprocessors (Article)
 
