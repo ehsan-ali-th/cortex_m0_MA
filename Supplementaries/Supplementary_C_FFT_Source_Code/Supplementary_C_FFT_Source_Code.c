@@ -2,7 +2,7 @@
  * Appendix C
  *
  * Author: Dr. Ehsan Ali
- * email: ehssan.aali@gmail.com
+ * Email: ehssan.aali@gmail.com
  * Last Update: 4th Nov. 2024
  *
  * Used in Article: Innovative Hardware Accelerator Architecture 
